@@ -11,9 +11,17 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+# Use a variável de ambiente RAILWAY_DOCKERFILE_PATH ou um caminho padrão
+custom_path = os.environ.get('RAILWAY_DOCKERFILE_PATH', 'caminho/padrao')
+
+CUSTOM_DIR = BASE_DIR / custom_path
 
 
 # Quick-start development settings - unsuitable for production
@@ -86,8 +94,6 @@ DATABASES = {
     }
 }
 
-import dj_database_url
-import os
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
