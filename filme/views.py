@@ -43,8 +43,10 @@ class Detalhefilmes(LoginRequiredMixin, DetailView):
         return super().get(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
-        context = super(Detalhefilmes, self).get_context_data(**kwargs)
-        filmes_relacionados = self.model.objects.filter(categoria=self.get_object().categoria)[0:5]
+        context = super().get_context_data(**kwargs)
+        filme = self.get_object()
+        categoria = filme.categoria
+        filmes_relacionados = self.model.objects.filter(categoria=categoria)[0:5] if categoria else []
         context["filmes_relacionados"] = filmes_relacionados
         return context
 
