@@ -31,7 +31,7 @@ CUSTOM_DIR = BASE_DIR / custom_path
 SECRET_KEY = 'django-insecure-xiluo+nkm48rjq+xb@ylq^jrqpn_8z-1i4#)(tw&6#g1&-t5b-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 ALLOWED_HOSTS = ["*"]
 
 
