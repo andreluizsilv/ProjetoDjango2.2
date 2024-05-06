@@ -1,1 +1,1 @@
-web: python manage.py && gunicorn hashflix-wsgi --log-file -
+web: python manage.py && gunicorn hashflix.wsgi --log-file -
