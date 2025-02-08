@@ -24,16 +24,20 @@ custom_path = os.environ.get('RAILWAY_DOCKERFILE_PATH', 'caminho/padrao')
 CUSTOM_DIR = BASE_DIR / custom_path
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-xiluo+nkm48rjq+xb@ylq^jrqpn_8z-1i4#)(tw&6#g1&-t5b-'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-xiluo+nkm48rjq+xb@ylq^jrqpn_8z-1i4#)(tw&6#g1&-t5b-')
+CSRF_TRUSTED_ORIGINS = [
+    'https://projetodjango22-production.up.railway.app',  # Domínio do Railway
+]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = [
+    'projetodjango22-production.up.railway.app',  # Domínio do Railway
+    'localhost',  # Para desenvolvimento local
+    '127.0.0.1',  # Para desenvolvimento local
+]
 
 # Application definition
 
@@ -161,3 +165,9 @@ LOGIN_URL = 'filme:login'
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+# Configurações de segurança para cookies e sessões
+SESSION_COOKIE_SECURE = not DEBUG  # Cookies seguros apenas em produção
+CSRF_COOKIE_SECURE = not DEBUG     # CSRF token seguro apenas em produção
+SESSION_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_SAMESITE = 'Lax'
